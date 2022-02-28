@@ -83,7 +83,7 @@ const trial_info = {
             option2: "B",
             correct: "A"
         }        
-    ],
+    ] /*,
     sliders: [
         {
             // QUD: "Wie sehr haben Sie Ihre Entscheidungen von bestimmten Eigenschaften abhängig gemacht?",
@@ -96,7 +96,7 @@ const trial_info = {
             optionLeft: "unwichtig",
             optionRight: "wichtig"
         }
-    ]
+    ] */
 };
 
 training_simple = generate_trials(8, trial_info.simple)

@@ -117,7 +117,7 @@ const rule1 = magpieViews.view_generator("forced_choice", {
   // trials: trial_info.forced_choice.length,
   trials: training_simple.length,
   // name should be identical to the variable name
-  name: 'rule1',
+  name: 'simple',
   data: training_simple,
   // you can add custom functions at different stages through a view's life cycle
   hook: {
@@ -136,7 +136,7 @@ const rule2 = magpieViews.view_generator("forced_choice", {
   // trials: trial_info.forced_choice.length,
   trials: training_xor.length,
   // name should be identical to the variable name
-  name: 'rule2',
+  name: 'xor',
   data: training_xor,
   // you can add custom functions at different stages through a view's life cycle
   hook: {
@@ -162,8 +162,3 @@ const slider_ratings = magpieViews.view_generator("slider_rating", {
   answer_container_generator: custom_answer_generator.slider_ratings,
   handle_response_function: custom_response_handlers.slider_ratings
 });
-
-
-// There are many more templates available:
-// forced_choice, slider_rating, dropdown_choice, testbox_input, rating_scale, image_selection, sentence_choice,
-// key_press, self_paced_reading and self_paced_reading_rating_scale
