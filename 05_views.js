@@ -112,13 +112,13 @@ const thanks = magpieViews.view_generator("thanks", {
 
 // Here, we initialize a normal forced_choice view
 const train_view = magpieViews.view_generator("forced_choice", {
-  trials: train_order_1.length,
+  trials: 2, // train_order_1.length,
   // name should be identical to the variable name
-  name: 'simple',
+  name: 'ordered_training',
   data: train_order_1,
   // you can add custom functions at different stages through a view's life cycle
   hook: {
-    after_response_enabled: check_category_response
+    after_response_enabled: hook_training
   }
 }, {
   // custom generator functions
@@ -127,6 +127,21 @@ const train_view = magpieViews.view_generator("forced_choice", {
   handle_response_function: custom_response_handlers.categorisation
 });
 
+
+const experiment_view = magpieViews.view_generator("forced_choice", {
+  trials: shuffled_experimental_trials.length,
+  // name should be identical to the variable name
+  name: 'experiment',
+  data: shuffled_experimental_trials,
+  hook: {
+    after_response_enabled: hook_experiment
+  }
+}, {
+  // custom generator functions
+  // stimulus_container_generator: stimulus_container_generators.basic_stimulus,
+  answer_container_generator: custom_answer_generator.categorisation,
+  handle_response_function: custom_response_handlers.categorisation
+});
 
 
 /*
