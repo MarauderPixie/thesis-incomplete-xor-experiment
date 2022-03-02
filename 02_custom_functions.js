@@ -14,7 +14,7 @@ const coin = _.sample(["head", "tail"]); // You can determine global (random) pa
 *
 */
 
-/* For generating multiple blocks of trials */
+/* For generating multiple blocks of training trials */
 const generate_blocks = function(blocks, ruleset) {
     cloner = function() {
         rnd_trials = _.shuffle(ruleset)
@@ -26,8 +26,31 @@ const generate_blocks = function(blocks, ruleset) {
     flatnd    = _.flatten(trials)
     // shuffled = _.shuffle(flatd)
 
-    return trials
+    return flatnd
 };
+
+/* for generating the 7x7 grid of experimental trials 
+...or not
+require('fs');
+PFADE = fs.readdirSync('./stimuli-full/');
+
+console.log(PFADE)
+
+const generate_exp_trials = function() {
+    const experimental_trials = {
+        t1: [
+            // CATEGORY A
+            {
+                picture: "stimuli-training/e13_1917-766.7.jpg",
+                question: "",
+                option1: 'A',
+                option2: 'B',
+                correct: 'A'
+            }
+        ]
+    }
+}
+*/
 
 
 /* For generating random participant IDs */
@@ -65,7 +88,7 @@ const time_limit = function(data, next) {
 };
 
 // compares the chosen answer to the value of `option1`
-check_category_response = function(data, next) {
+hook_training = function(data, next) {
     $('input[name=answer]').one('change', function(e) {
 
         const btn1 = document.querySelector('label[for="o1"]');
@@ -100,6 +123,26 @@ check_category_response = function(data, next) {
     })
 }
 
+// lock response button of experimental trials
+hook_experiment = function(data, next) {
+    $('input[name=answer]').one('change', function(e) {
+
+        const btn1 = document.querySelector('label[for="o1"]');
+        const btn2 = document.querySelector('label[for="o2"]');
+        const o1c = document.querySelector("#o1");
+        const o2c = document.querySelector("#o2");
+
+        if (e.target.id === "o1") {
+            btn1.style.backgroundColor = "#1e1e1e40"; 
+        } else {
+            btn2.style.backgroundColor = "#1e1e1e40"; 
+        }
+        // console.log(e.target.value === data.correct && e.target.id === "o1")
+
+        btn1.style.pointerEvents = "none";
+        btn2.style.pointerEvents = "none";
+    })
+}
 
 // Declare your hooks here
 
