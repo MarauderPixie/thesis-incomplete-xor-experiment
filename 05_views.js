@@ -111,14 +111,11 @@ const thanks = magpieViews.view_generator("thanks", {
 
 
 // Here, we initialize a normal forced_choice view
-const rule1 = magpieViews.view_generator("forced_choice", {
-  // config info
-  // This will use all trials specified in `data`, you can user a smaller value (for testing), but not a larger value
-  // trials: trial_info.forced_choice.length,
-  trials: training_simple.length,
+const train_view = magpieViews.view_generator("forced_choice", {
+  trials: train_order_1.length,
   // name should be identical to the variable name
   name: 'simple',
-  data: training_simple,
+  data: train_order_1,
   // you can add custom functions at different stages through a view's life cycle
   hook: {
     after_response_enabled: check_category_response
@@ -130,10 +127,12 @@ const rule1 = magpieViews.view_generator("forced_choice", {
   handle_response_function: custom_response_handlers.categorisation
 });
 
+
+
+/*
+These are from prior versions; rule2 is old naming - should probably to experimental pahse
+
 const rule2 = magpieViews.view_generator("forced_choice", {
-  // config info
-  // This will use all trials specified in `data`, you can user a smaller value (for testing), but not a larger value
-  // trials: trial_info.forced_choice.length,
   trials: training_xor.length,
   // name should be identical to the variable name
   name: 'xor',
@@ -151,7 +150,6 @@ const rule2 = magpieViews.view_generator("forced_choice", {
 
 
 const slider_ratings = magpieViews.view_generator("slider_rating", {
-  // This will use all trials specified in `data`, you can user a smaller value (for testing), but not a larger value
   trials: trial_info.sliders.length,
   // name should be identical to the variable name
   name: 'slider_ratings',
@@ -162,3 +160,4 @@ const slider_ratings = magpieViews.view_generator("slider_rating", {
   answer_container_generator: custom_answer_generator.slider_ratings,
   handle_response_function: custom_response_handlers.slider_ratings
 });
+*/

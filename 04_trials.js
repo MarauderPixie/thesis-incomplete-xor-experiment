@@ -1,8 +1,8 @@
 // In this file you can specify the trial data for your experiment
 
 
-const trial_info = {
-    simple: [
+const training_trials = {
+    t1: [
         // CATEGORY A
         {
             picture: "stimuli-training/e13_1917-766.7.jpg",
@@ -32,7 +32,8 @@ const trial_info = {
             correct: "B"
         }
     ],
-    xor: [
+    t2: [
+        // CATEGORY A
         {
             question: "",
             picture: "stimuli-training/e13_1917-766.7.jpg",
@@ -46,6 +47,20 @@ const trial_info = {
             option2: 'B',
             correct: 'A',
         },{
+            question: "",
+            picture: "stimuli-training/e13_1917-766.7.jpg",
+            option1: 'A',
+            option2: 'B',
+            correct: 'A',
+        },{
+            question: "",
+            picture: "stimuli-training/e07_1500-900.jpg",
+            option1: 'A',
+            option2: 'B',
+            correct: 'A',
+        },
+        // CATEGORY B
+        {
             question: "",
             picture: "stimuli-training/e41_3583-766.7.jpg",
             option1: 'A',
@@ -64,25 +79,14 @@ const trial_info = {
             option1: "A",
             option2: "B",
             correct: "B"
-        },{
-            question: "",
-            picture: "stimuli-training/e13_1917-766.7.jpg",
-            option1: "A",
-            option2: "B",
-            correct: "A"
-        },{
+        },
+        {
             question: "",
             picture: "stimuli-training/e09_1917-233.3.jpg",
             option1: "A",
             option2: "B",
             correct: "B"
-        },{
-            question: "",
-            picture: "stimuli-training/e07_1500-900.jpg",
-            option1: "A",
-            option2: "B",
-            correct: "A"
-        }        
+        }
     ] /*,
     sliders: [
         {
@@ -99,5 +103,16 @@ const trial_info = {
     ] */
 };
 
-training_simple = generate_trials(8, trial_info.simple)
-training_xor = generate_trials(8, trial_info.xor)
+
+// UNORDERED
+train_order_0 = generate_blocks(12, training_trials.t2)
+
+
+// ORDERED
+ord1 = generate_blocks(4, training_trials.t1)
+ord2 = generate_blocks(10, training_trials.t2)
+train_order_1 = _.concat(ord1, ord2)
+
+
+// testing
+// console.log("unordered: ", train_order_0)

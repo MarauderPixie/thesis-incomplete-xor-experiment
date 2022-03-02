@@ -15,20 +15,18 @@ const coin = _.sample(["head", "tail"]); // You can determine global (random) pa
 */
 
 /* For generating multiple blocks of trials */
-const generate_trials = function(n, ruleset) {
+const generate_blocks = function(blocks, ruleset) {
     cloner = function() {
         rnd_trials = _.shuffle(ruleset)
         return _.clone(rnd_trials)
     }
 
-    n_blocks = n / ruleset.length
+    trials   = _.times(blocks, cloner)
+    // console.log("generate_blocks.trials: ", trials)
+    flatnd    = _.flatten(trials)
+    // shuffled = _.shuffle(flatd)
 
-    trials   = _.times(n_blocks, cloner)
-    console.log(trials)
-    flatd    = _.flatten(trials)
-    shuffled = _.shuffle(flatd)
-
-    return shuffled
+    return trials
 };
 
 

@@ -17,9 +17,9 @@ $("document").ready(function() {
         views_seq: [
             intro,
             instructions,
-            rule1,
-            rule2,
-            slider_ratings,
+            train_view,
+            // rule2,
+            // slider_ratings,
             post_test,
             thanks,
         ],
@@ -38,8 +38,7 @@ $("document").ready(function() {
         progress_bar: {
             in: [
                 // list the view-names of the views for which you want a progress bar
-                training_simple.name,
-                training_xor.name,
+                train_order_1
             ],
              // Possible styles are "default", "separate" and "chunks"
             style: "separate",
