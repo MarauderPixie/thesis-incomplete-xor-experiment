@@ -6,6 +6,23 @@
 */
 const coin = _.sample(["head", "tail"]); // You can determine global (random) parameters here
 // Declare your variables here
+const group_rules = _.sample([0, 1]);
+const group_order = _.sample([0, 1])
+
+// console.log("rule-related language: ", group_rules)
+// console.log("non-random trials: ", group_order)
+
+// Instructions
+// 0: taken from Conayway & Kurtz, 2017
+training_instructions_0 = "In this experiment, you will be shown examples of geometric images. Your job is to learn to tell whether each example belongs to the Alpha or Beta category. As you are shown each example, you will be asked to make a category judgment and then you will recieve feedback. At first you will have to guess, but you will gain experience as you go along. After you have completed your training, we will ask you a series of test questions about what you have learned."
+
+generalization_instructions_0 = "For this part of the study, you will again choose the category you think each example belongs to. This time you will not receive feedback."
+
+// 1: taken from Kurtz et al, 2013
+training_instructions_1 = "In this experiment, you will be shown examples of geometric images. Your job is to learn a rule that allows you to tell whether each example belongs in the Alpha or Beta category. As you are shown each example, you will be asked to make a category judgment and then you will receive feedback. At first you will have to guess, but you will gain experience as you go along. Try your best to gain mastery of the Alpha and Beta categories."
+
+// 1: original phrasing
+generalization_instructions_1 = "For this part of the study, you will again apply the rule you learned to choose the category you think each example belongs to. This time you will not receive feedback."
 
 
 
