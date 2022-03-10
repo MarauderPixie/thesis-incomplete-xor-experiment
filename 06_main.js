@@ -16,8 +16,9 @@ $("document").ready(function() {
         // You have to specify all views you want to use in this experiment and the order of them
         views_seq: [
             intro,
-            instructions,
+            instructions_training_bla,
             train_view,
+            instructions_generalization_bla,
             experiment_view,
             post_test,
             thanks,

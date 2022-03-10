@@ -34,12 +34,13 @@ const intro = magpieViews.view_generator("intro", {
   buttonText: 'zu den Anweisungen'
 });
 
-// For most tasks, you need instructions views
-const instructions = magpieViews.view_generator("instructions", {
+// training instructions
+const instructions_training_bla = magpieViews.view_generator("instructions", {
   trials: 1,
-  name: 'instructions',
+  name: 'instructions-training',
   title: 'Einleitung',
-  text: `In dieser Studie werden Ihnen verschiedene Objekte präsentiert. Jedes Objekt gehört zu einer von zwei möglichen Kategorien, <b>A</b> oder <b>B</b>. Ihre Aufgabe in dieser Studie ist es, zu lernen, zu welcher Kategorie die Objekte gehören. Dies wird in mehreren Durchgängen passieren. In jedem Durchgang wird eines der Objekte angezeigt, und Sie wählen eine der zwei Kategorien, <b>A</b> oder <b>B</b>, durch einen Klick auf das entsprechende Antwortfeld. Nach jeder Antwort bekommen Sie eine Rückmeldung darüber, ob Ihre Wahl richtig oder falsch war. Am Anfang müssen Sie raten, letztendlich aber werden Sie lernen, wie man die Objekte richtig kategorisiert.
+  text: instructions_training,
+  /* `In dieser Studie werden Ihnen verschiedene Objekte präsentiert. Jedes Objekt gehört zu einer von zwei möglichen Kategorien, <b>A</b> oder <b>B</b>. Ihre Aufgabe in dieser Studie ist es, zu lernen, zu welcher Kategorie die Objekte gehören. Dies wird in mehreren Durchgängen passieren. In jedem Durchgang wird eines der Objekte angezeigt, und Sie wählen eine der zwei Kategorien, <b>A</b> oder <b>B</b>, durch einen Klick auf das entsprechende Antwortfeld. Nach jeder Antwort bekommen Sie eine Rückmeldung darüber, ob Ihre Wahl richtig oder falsch war. Am Anfang müssen Sie raten, letztendlich aber werden Sie lernen, wie man die Objekte richtig kategorisiert.
   <br />
   <br />
   Es gibt insgesamt 8 Objekte, die jeweils drei Eigenschaften mit jeweils zwei Ausprägungen haben. Diese Eigenschaften sind:
@@ -48,12 +49,20 @@ const instructions = magpieViews.view_generator("instructions", {
   <br />- <b>Größe</b> (<i>groß</i> oder <i>klein</i>)
   <br />  
   <br />
-  In einem "fertigen" Experiment würde nun zunächst jedes Objekt einmal kurz angezeigt - in dieser Version fangen wir jedoch direkt mit der Kategorisierung an.`,
+  In einem "fertigen" Experiment würde nun zunächst jedes Objekt einmal kurz angezeigt - in dieser Version fangen wir jedoch direkt mit der Kategorisierung an.`, */
   buttonText: 'mit dem Experiment beginnen'
 });
 
+const instructions_generalization_bla = magpieViews.view_generator("instructions", {
+  trials: 1,
+  name: 'instructions-generalization',
+  title: 'idk yet',
+  text: instructions_generalization,
+  buttonText: 'Fortfahren'
+});
 
-// In the post test questionnaire you can ask your participants addtional questions
+
+// demographics
 const post_test = magpieViews.view_generator("post_test", {
   trials: 1,
   name: 'post_test',
@@ -86,37 +95,23 @@ const thanks = magpieViews.view_generator("thanks", {
   prolificConfirmText: 'Press the button'
 });
 
-/** trial (magpie's Trial Type Views) below
-
-* Obligatory properties
-
-    - trials: int - the number of trials this view will appear
-    - name: string - the name of the view type as it shall be known to _magpie (e.g. for use with a progress bar)
-            and the name of the trial as you want it to appear in the submitted data
-    - data: array - an array of trial objects
-
-* Optional properties
-
-    - pause: number (in ms) - blank screen before the fixation point or stimulus show
-    - fix_duration: number (in ms) - blank screen with fixation point in the middle
-    - stim_duration: number (in ms) - for how long to have the stimulus on the screen
-      More about trial life cycle - https://magpie-ea.github.io/magpie-docs/01_designing_experiments/04_lifecycles_hooks/
-
-    - hook: object - option to hook and add custom functions to the view
-      More about hooks - https://magpie-ea.github.io/magpie-docs/01_designing_experiments/04_lifecycles_hooks/
-
-* All about the properties of trial views
-* https://magpie-ea.github.io/magpie-docs/01_designing_experiments/01_template_views/#trial-views
-*/
 
 
-// Here, we initialize a normal forced_choice view
+/** trial (magpie's Trial Type Views) below */
+if (group_order == 0) {
+  training_structure = train_order_0;
+  train_view_name = "training - random";
+} else {
+  training_structure = train_order_1;
+  train_view_name = "training - ordered";
+}
+
+
+// initialize training and generalization views
 const train_view = magpieViews.view_generator("forced_choice", {
-  trials: 2, // train_order_1.length,
-  // name should be identical to the variable name
-  name: 'ordered_training',
-  data: train_order_1,
-  // you can add custom functions at different stages through a view's life cycle
+  trials: 12, // train_order_1.length,
+  name: train_view_name,
+  data: training_structure,
   hook: {
     after_response_enabled: hook_training
   }
@@ -129,8 +124,7 @@ const train_view = magpieViews.view_generator("forced_choice", {
 
 
 const experiment_view = magpieViews.view_generator("forced_choice", {
-  trials: shuffled_experimental_trials.length,
-  // name should be identical to the variable name
+  trials: 16, // shuffled_experimental_trials.length,
   name: 'experiment',
   data: shuffled_experimental_trials,
   hook: {
@@ -142,6 +136,9 @@ const experiment_view = magpieViews.view_generator("forced_choice", {
   answer_container_generator: custom_answer_generator.categorisation,
   handle_response_function: custom_response_handlers.categorisation
 });
+
+
+
 
 
 /*

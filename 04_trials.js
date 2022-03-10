@@ -107,7 +107,6 @@ const training_trials = {
 // UNORDERED
 train_order_0 = generate_blocks(12, training_trials.t2)
 
-
 // ORDERED
 ord1 = generate_blocks(4, training_trials.t1)
 ord2 = generate_blocks(10, training_trials.t2)

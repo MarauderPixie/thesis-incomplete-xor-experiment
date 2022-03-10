@@ -25,6 +25,16 @@ training_instructions_1 = "In this experiment, you will be shown examples of geo
 generalization_instructions_1 = "For this part of the study, you will again apply the rule you learned to choose the category you think each example belongs to. This time you will not receive feedback."
 
 
+// set groups
+if (group_rules == 0){
+    instructions_training = training_instructions_0;
+    instructions_generalization = generalization_instructions_0;
+} else {
+    instructions_training = training_instructions_1;
+    instructions_generalization = generalization_instructions_1;
+}
+
+
 
 /* Helper functions
 *
