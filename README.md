@@ -1,25 +1,27 @@
-# About
+# test-run
 
-This experiment tries to replicate and expand on the results of Kurtz (2013) and Conaway & Kurtz (2017).  
-Therefore, it uses the stimuli available on the repository of the original paper - [which can be found here](https://github.com/nolanbconaway/xor-pbr-2017).
+This is a sample experiment using magpie.
+### Setup
 
+First, set up the project with `npm install`
 
-## Classic Category Learning Experiment
+To run the project locally, run `npm run serve`
 
-This repository contains a prototypical, binary cl-experiment - implemented in _magpie.
+To build the project for deployment (e.g. to Netlify), run `npm run build`
 
-Basically, it's an adaptation of _magpie's default "2-alternatives forced-choice" template with the following changes:
+If you are hosting this repository on github, the project will automatically be built and deployed to the gh-pages branch, so you only have to enable Github Pages in your repository settings to publish your project.
 
-- trials won't continue automatically, but a 'next' button will show after a choice has been made
-- after choosing, the choice will be 'locked in'; that is, participants won't be able to change their decision
-- a feedback message will inform participants if their choice was correct and choice-buttons get colored respectively
+For more information, see the [manual](https://magpie-manual.netlify.app/).
+### Coding style
 
+To automatically fix coding style and format the code (linting) run `npm run lint` and `npm run lint:style`
 
-## Try it yourself
+## How to update magpie
 
-You can either [follow this link](https://cal-catlearn-protoype.netlify.app/) to an online version of the experiment or, to run (and eventually customize) it locally, follow these steps - assuming you already have `npm` installed:
+```sh
+$ cd your-project
+$ npm update magpie-base
+```
 
-1. clone the repo
-2. open a terminal in the folder you cloned it to
-3. run `npm install` 
-4. open `index.html` in your browser
+Read more on [maintaining npm dependencies](https://www.carlrippon.com/upgrading-npm-dependencies/).
+
